@@ -8,11 +8,10 @@ import time
 from config import CONFIG
 
 
-
 # if CONFIG['use_frame'] == 'paddle':
 #     from paddle_net import PolicyValueNet
 if CONFIG['use_frame'] == 'pytorch':
-    from net import PolicyValueNet
+    from pytorch_net import PolicyValueNet
 else:
     print('暂不支持您选择的框架')
 
@@ -26,10 +25,8 @@ class Human:
         # move从鼠标点击事件触发
         # print('当前是player2在操作')
         # print(board.current_player_color)
-        if  move_action2move_id.__contains__(move):
-            move = move_action2move_id[move]
-        else:
-            move = -1
+        move = move_action2move_id[move]
+
         # move = random.choice(board.availables)
         return move
 
@@ -60,7 +57,7 @@ fullscreen = False
 # 创建指定大小的窗口
 screen = pygame.display.set_mode(size)
 # 设置窗口标题
-pygame.display.set_caption("中国象棋")
+pygame.display.set_caption("一心炼银")
 
 # 加载一个列表进行图像的绘制
 # 列表表示的棋盘初始化，红子在上，黑子在下，禁止对该列表进行编辑，使用时必须使用深拷贝
@@ -202,15 +199,11 @@ start_player = 1
 
 player1 = MCTSPlayer(policy_value_net.policy_value_fn,
                      c_puct=5,
-                     n_playout=1000,
-                     is_selfplay=0)
-player2 = MCTSPlayer(policy_value_net.policy_value_fn,
-                     c_puct=5,
-                     n_playout=2000,
+                     n_playout=800,
                      is_selfplay=0)
 
 
-# player2 = Human()
+player2 = Human()
 
 board.init_board(start_player)
 p1, p2 = 1, 2
@@ -267,7 +260,6 @@ while True:
         player_in_turn = players[current_player]  # 决定当前玩家的代理
 
     if player_in_turn.agent == 'AI':
-        pygame.display.update()
         start_time = time.time()
         move = player_in_turn.get_action(board)  # 当前玩家代理拿到动作
         print('耗时：', time.time() - start_time)
@@ -279,11 +271,10 @@ while True:
         swicth_player = False
         if len(move_action) == 4:
             move = player_in_turn.get_action(move_action)  # 当前玩家代理拿到动作
-            if move != -1:
-                board.do_move(move)  # 棋盘做出改变
-                swicth_player = True
-                move_action = ''
-                draw_fire = False
+            board.do_move(move)  # 棋盘做出改变
+            swicth_player = True
+            move_action = ''
+            draw_fire = False
 
     end, winner = board.game_end()
     if end:

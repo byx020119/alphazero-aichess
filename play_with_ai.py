@@ -6,7 +6,7 @@ from config import CONFIG
 # if CONFIG['use_frame'] == 'paddle':
 #     from paddle_net import PolicyValueNet
 if CONFIG['use_frame'] == 'pytorch':
-    from net import PolicyValueNet
+    from pytorch_net import PolicyValueNet
 else:
     print('暂不支持您选择的框架')
 
@@ -37,5 +37,4 @@ human = Human1()
 
 game = Game(board=Board())
 game.start_play(mcts_player, human, start_player=1, is_shown=1)
-
 
