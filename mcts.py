@@ -2,6 +2,14 @@
 
 import numpy as np
 import copy
+from config import CONFIG
+
+
+def softmax(x):
+    probs = np.exp(x - np.max(x))
+    probs /= np.sum(probs)
+    return probs
+
 
 # 定义叶子节点
 class TreeNode(object):
@@ -73,10 +81,10 @@ class TreeNode(object):
 
 # 蒙特卡洛搜索树
 class MCTS(object):
-
+    # param n_playout: 每次mcts搜索的次数
     def __init__(self, policy_value_fn, c_puct=5, n_playout=2000):
         """policy_value_fn: 接收board的盘面状态，返回落子概率和盘面评估得分"""
-        self._root = TreeNode(None, 1.0)
+        self._root = TreeNode(None, 1.0)  # 父节点走子概率为1
         self._policy = policy_value_fn
         self._c_puct = c_puct
         self._n_playout = n_playout
@@ -87,6 +95,7 @@ class MCTS(object):
         注意：state已就地修改，因此必须提供副本
         """
         node = self._root
+        # 循环找到叶子节点为止
         while True:
             if node.is_leaf():
                 break
@@ -94,14 +103,15 @@ class MCTS(object):
             action, node = node.select(self._c_puct)
             state.do_move(action)
 
-        # 使用网络评估叶子节点，网络输出（动作，概率）元组p的列表以及当前玩家视角的得分[-1, 1]
+        # 使用网络评估叶子节点，网络输出（动作，概率）元组p的列表以及当前玩家视角的得分[-1, 1]      # 此处为估值
+        # 使用神经网络进行更新，可以减少搜素次数，即不必走到终局
         action_probs, leaf_value = self._policy(state)
         # 查看游戏是否结束
         end, winner = state.game_end()
         if not end:
             node.expand(action_probs)
         else:
-            # 对于结束状态，将叶子节点的值换成1或-1
+            # 对于结束状态，将叶子节点的值换成1或-1                                         # 即根据真实的值来训练神经网络
             if winner == -1:    # Tie
                 leaf_value = 0.0
             else:
@@ -109,7 +119,7 @@ class MCTS(object):
                     1.0 if winner == state.get_current_player_id() else -1.0
                 )
         # 在本次遍历中更新节点的值和访问次数
-        # 必须添加符号，因为两个玩家共用一个搜索树
+        # 必须添加符号，因为两个玩家在模拟的时候共用一个搜索树
         node.update_recursive(-leaf_value)
 
     def get_move_probs(self, state, temp=1e-3):
@@ -131,7 +141,7 @@ class MCTS(object):
 
     def update_with_move(self, last_move):
         """
-        在当前的树上向前一步，保持我们已经直到的关于子树的一切
+        在当前的树上向前一步，保持我们已经知道的关于子树的一切，即更新根节点到走子的位置等信息
         """
         if last_move in self._root._children:
             self._root = self._root._children[last_move]
@@ -141,3 +151,51 @@ class MCTS(object):
 
     def __str__(self):
         return 'MCTS'
+
+
+
+
+# 基于MCTS的AI玩家
+class MCTSPlayer(object):
+
+    def __init__(self, policy_value_function, c_puct=5, n_playout=2000, is_selfplay=0):
+        self.mcts = MCTS(policy_value_function, c_puct, n_playout)
+        self._is_selfplay = is_selfplay
+        self.agent = "AI"
+    # 设置颜色
+    def set_player_ind(self, p):
+        self.player = p
+
+    # 重置搜索树
+    def reset_player(self):
+        self.mcts.update_with_move(-1)
+
+    def __str__(self):
+        return 'MCTS {}'.format(self.player)
+
+    # 得到行动
+    def get_action(self, board, temp=1e-3, return_prob=0):
+        # 像alphaGo_Zero论文一样使用MCTS算法返回的pi向量
+        move_probs = np.zeros(2086)  # 先使用0来占位
+
+        acts, probs = self.mcts.get_move_probs(board, temp)  # 拿到走子概率
+        move_probs[list(acts)] = probs  # 用搜索出的概率替代占位
+        if self._is_selfplay:
+            # 添加Dirichlet Noise进行探索（自我对弈需要）
+            move = np.random.choice(
+                acts,
+                p=0.75*probs + 0.25*np.random.dirichlet(CONFIG['dirichlet'] * np.ones(len(probs)))  # 根据论文中设置的0.75
+            )
+            # 更新根节点并重用搜索树
+            self.mcts.update_with_move(move)
+        else:
+            # 使用默认的temp=1e-3，它几乎相当于选择具有最高概率的移动
+            move = np.random.choice(acts, p=probs)
+            # 重置根节点
+            self.mcts.update_with_move(-1)
+        if return_prob:
+            return move, move_probs
+        else:
+            return move
+
+
