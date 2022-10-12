@@ -57,7 +57,7 @@ fullscreen = False
 # 创建指定大小的窗口
 screen = pygame.display.set_mode(size)
 # 设置窗口标题
-pygame.display.set_caption("一心炼银")
+pygame.display.set_caption("中国象棋")
 
 # 加载一个列表进行图像的绘制
 # 列表表示的棋盘初始化，红子在上，黑子在下，禁止对该列表进行编辑，使用时必须使用深拷贝

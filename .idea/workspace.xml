@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93c2c629-3646-4849-8eaf-d4e3d68702b5" name="Changes" comment="去除冗余代码">
+    <list default="true" id="93c2c629-3646-4849-8eaf-d4e3d68702b5" name="Changes" comment="readme完善">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/structure.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/structure.drawio" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +28,28 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.play_with_ai">
+  <component name="RunManager" selected="Python.UIplay">
+    <configuration name="UIplay" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="alphazero-aichess" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/UIplay.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="game" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="alphazero-aichess" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -73,6 +94,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.UIplay" />
         <item itemvalue="Python.play_with_ai" />
         <item itemvalue="Python.game" />
       </list>
@@ -101,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665547233435</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="readme完善">
+      <created>1665557988918</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1665557988918</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +147,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="修正一些错误" />
     <MESSAGE value="去除冗余代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="去除冗余代码" />
+    <MESSAGE value="readme完善" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme完善" />
   </component>
 </project>
