@@ -9,7 +9,7 @@
 
 
 ## 网络结构
-<img src="/imgs/structure.png" alt="structure" title="structure">
+<img src="/imgs/structure.jpg" alt="structure" title="structure">
 
 ## 环境配置
 pytorch 11.x + cuda 

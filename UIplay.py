@@ -199,7 +199,7 @@ start_player = 1
 
 player1 = MCTSPlayer(policy_value_net.policy_value_fn,
                      c_puct=5,
-                     n_playout=800,
+                     n_playout=2000,
                      is_selfplay=0)
 
 

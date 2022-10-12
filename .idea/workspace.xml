@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93c2c629-3646-4849-8eaf-d4e3d68702b5" name="Changes" comment="readme完善">
+    <list default="true" id="93c2c629-3646-4849-8eaf-d4e3d68702b5" name="Changes" comment="uiplay资源添加，model文件加入">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/structure.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/structure.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UIplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/UIplay.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665557988918</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="uiplay资源添加，model文件加入">
+      <created>1665577329142</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1665577329143</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,6 +155,7 @@
     <MESSAGE value="修正一些错误" />
     <MESSAGE value="去除冗余代码" />
     <MESSAGE value="readme完善" />
-    <option name="LAST_COMMIT_MESSAGE" value="readme完善" />
+    <MESSAGE value="uiplay资源添加，model文件加入" />
+    <option name="LAST_COMMIT_MESSAGE" value="uiplay资源添加，model文件加入" />
   </component>
 </project>
