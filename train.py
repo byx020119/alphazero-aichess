@@ -26,7 +26,7 @@ class TrainPipeline:
         self.temp = 1.0
         self.batch_size = CONFIG['batch_size']  # 训练的batch大小
         self.epochs = CONFIG['epochs']  # 每次更新的train_step数量
-        self.kl_targ = CONFIG['kl_targ']  # kl散度控制
+        self.kl_targ = CONFIG['kl_trag']  # kl散度控制
         self.check_freq = 100  # 保存模型的频率
         self.game_batch_num = CONFIG['game_batch_num']  # 训练更新的次数
 
