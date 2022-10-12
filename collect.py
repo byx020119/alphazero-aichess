@@ -36,9 +36,9 @@ class CollectPipeline:
 
     # 从主体加载模型
     def load_model(self):
-        if CONFIG['use_frame'] == 'paddle':
-            model_path = CONFIG['paddle_model_path']
-        elif CONFIG['use_frame'] == 'pytorch':
+        # if CONFIG['use_frame'] == 'paddle':
+        #     model_path = CONFIG['paddle_model_path']
+        if CONFIG['use_frame'] == 'pytorch':
             model_path = CONFIG['pytorch_model_path']
         else:
             print('暂不支持所选框架')
@@ -119,10 +119,10 @@ class CollectPipeline:
 collecting_pipeline = CollectPipeline(init_model='current_policy.model')
 collecting_pipeline.run()
 
-if CONFIG['use_frame'] == 'paddle':
-    collecting_pipeline = CollectPipeline(init_model='current_policy.model')
-    collecting_pipeline.run()
-elif CONFIG['use_frame'] == 'pytorch':
+# if CONFIG['use_frame'] == 'paddle':
+#     collecting_pipeline = CollectPipeline(init_model='current_policy.model')
+#     collecting_pipeline.run()
+if CONFIG['use_frame'] == 'pytorch':
     collecting_pipeline = CollectPipeline(init_model='current_policy.pkl')
     collecting_pipeline.run()
 else:

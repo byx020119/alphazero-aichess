@@ -121,9 +121,9 @@ class TrainPipeline:
                 if len(self.data_buffer) > self.batch_size:
                     loss, entropy = self.policy_updata()
                 # 保存模型
-                if CONFIG['use_frame'] == 'paddle':
-                    self.policy_value_net.save_model(CONFIG['paddle_model_path'])
-                elif CONFIG['use_frame'] == 'pytorch':
+                # if CONFIG['use_frame'] == 'paddle':
+                #     self.policy_value_net.save_model(CONFIG['paddle_model_path'])
+                if CONFIG['use_frame'] == 'pytorch':
                     self.policy_value_net.save_model(CONFIG['pytorch_model_path'])
                 else:
                     print('不支持所选框架')
@@ -134,10 +134,10 @@ class TrainPipeline:
             print('\n\rquit')
 
 
-if CONFIG['use_frame'] == 'paddle':
-    training_pipeline = TrainPipeline(init_model='current_policy.model')
-    training_pipeline.run()
-elif CONFIG['use_frame'] == 'pytorch':
+# if CONFIG['use_frame'] == 'paddle':
+#     training_pipeline = TrainPipeline(init_model='current_policy.model')
+#     training_pipeline.run()
+if CONFIG['use_frame'] == 'pytorch':
     training_pipeline = TrainPipeline(init_model='current_policy.pkl')
     training_pipeline.run()
 else:
