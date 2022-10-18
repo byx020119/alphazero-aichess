@@ -11,6 +11,12 @@
 ## 网络结构
 <img src="/imgs/structure.jpg" alt="structure" title="structure">
 
+## MCTS
+根节点直接扩展
+<img src="/imgs/mcts1.png" alt="mcts1" title="mcts1">
+第一次mcts
+<img src="/imgs/mcts2.png" alt="mcts2" title="mcts2">
+
 ## 环境配置
 pytorch 11.x + cuda 
 

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93c2c629-3646-4849-8eaf-d4e3d68702b5" name="Changes" comment="更新一些错误">
-      <change beforePath="$PROJECT_DIR$/.$structure.drawio.dtmp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imgs/structure.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/imgs/structure.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/structure.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/structure.drawio" afterDir="false" />
     </list>
